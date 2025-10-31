@@ -5,16 +5,20 @@ from tkinter import CHAR
 from xml.dom import UserDataHandler
 import mysql.connector
 import pandas as pd
+import re
 
 class DBEntry:
     def __init__(self):
         self.PatronTypeID = None
+        self.PatronTypeDefinition = None
         self.TotalCheckots = None
         self.TotalRenews = None
         self.AgeRangeLow = None
         self.AgeRangehigh = None
         self.HomeLibraryCode = None
+        self.HomeLibraryDefinition = None
         self.NotificationPreferenceCode = None
+        self.NotificationCodeDefinition = None
         self.CirculationActiveMonth = None
         self.CirculationActiveYear = None
         self.providedEmailAddress = None
@@ -49,14 +53,37 @@ if int(userinput) == 1:
     #opening file to be read
     try:
         df = pd.read_excel('app/Sample.xlsx', sheet_name='Sheet1')
-        
     except:
         print("failed to open file")
+    mycursor = mydb.cursor()
+    #add these collumns
+    print(df.columns)
     #go through all the lines in the DB
     for index, row in df.iterrows():
+        NewRow = DBEntry()
+        NewRow.PatronTypeID = row['ColumnA']
+        NewRow.PatronTypeDefinition = row['ColumnB']
+        NewRow.TotalCheckots = row['ColumnC']
+        NewRow.TotalRenews = row['ColumnD']
 
+        #get low and high age
+        combinedAge = row['ColumnE']
+        separatedAge = re.findall(r'\d+', combinedAge)
+        low, high = map(int, separatedAge)
+        NewRow.AgeRangeLow = low
+        NewRow.AgeRangehigh = high
+
+        NewRow.HomeLibraryCode = row['ColumnF']
+        NewRow.HomeLibraryDefinition = row['ColumnG']
+        NewRow.CirculationActiveMonth = row['ColumnH']
+        NewRow.CirculationActiveYear = row['ColumnI']
+        NewRow.NotificationPreferenceCode = row['ColumnJ']
+        NewRow.NotificationCodeDefinition = row['ColumnK']
+        NewRow.providedEmailAddress = row['ColumnL']
+        NewRow.WithinSanFranciscoCounty = row['ColumnM']
+        NewRow.PatronRegisterYear = row['ColumnN']
         print(index)
-mycursor = mydb.cursor()
+
 
 mycursor.execute("SHOW TABLES")
 for db in mycursor:
