@@ -1,7 +1,9 @@
 CREATE DATABASE RfAssignment1;
 
+use RfAssignment1;
+
 CREATE TABLE PatronTypes(
-PatronTypeID int Primary KEY,
+PatronTypeID int,
 PatronTypeDefinition varchar(225) NOT NULL,
 PRIMARY KEY(PatronTypeID)
 );
@@ -29,6 +31,8 @@ PRIMARY KEY (PatronID),
 FOREIGN KEY(PatronTypeID) references PatronTypes(PatronTypeID),
 FOREIGN KEY(HomeLibraryCode) references HomeLibararyCodes(HomeLibraryCode)
 );
+Show tables
+/*
 insert into PatronTypes (PatronTypeID, PatronTypeDefinition)
 values 
 	(0, 'Adult'),
@@ -37,7 +41,7 @@ values
     (3, 'Senior'),
     (4, 'Welcome'),
     (16, 'Digital Access Card');
-/*
+
 insert into HomeLibararyCodes(HomeLibraryCode, HomeLibraryDefinition)
 values
 	('r3', 'RichMond'),
