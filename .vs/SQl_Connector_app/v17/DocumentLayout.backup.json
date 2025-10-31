@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Ryder F\\Documents\\SFILS-Assignment1\\SQl_Connector_app\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{C187247B-EB9D-4407-BCFF-9B74C58C6EC9}|SQl_Connector_app.pyproj|C:\\Users\\Ryder F\\Documents\\SFILS-Assignment1\\SQl_Connector_app\\SQl_Connector_app.py||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{C187247B-EB9D-4407-BCFF-9B74C58C6EC9}|SQl_Connector_app.pyproj|solutionrelative:SQl_Connector_app.py||{8B382828-6202-11D1-8870-0000F87579D2}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SQl_Connector_app.py",
+              "DocumentMoniker": "C:\\Users\\Ryder F\\Documents\\SFILS-Assignment1\\SQl_Connector_app\\SQl_Connector_app.py",
+              "RelativeDocumentMoniker": "SQl_Connector_app.py",
+              "ToolTip": "C:\\Users\\Ryder F\\Documents\\SFILS-Assignment1\\SQl_Connector_app\\SQl_Connector_app.py",
+              "RelativeToolTip": "SQl_Connector_app.py",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2025-10-31T18:32:38.854Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
