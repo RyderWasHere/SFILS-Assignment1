@@ -1,4 +1,5 @@
 from asyncio.windows_events import NULL
+from importlib.abc import PathEntryFinder
 import math
 from math import isnan, nan
 import os
@@ -13,7 +14,7 @@ class DBEntry:
     def __init__(self):
         self.PatronTypeID = None
         self.PatronTypeDefinition = None
-        self.TotalCheckots = None
+        self.TotalCheckouts = None
         self.TotalRenews = None
         self.AgeRangeLow = None
         self.AgeRangehigh = None
@@ -27,13 +28,46 @@ class DBEntry:
         self.WithinSanFranciscoCounty = None
         self.PatronRegisterYear = None
 
-def WritePatronType(mycursor):
+def handle_foreign_key_error(err):
+    # Regex to extract the constraint name from the error message
+    # Pattern: CONSTRAINT `(constraint_name)` FOREIGN KEY
+    match = re.search(r"CONSTRAINT `([^`]+)` FOREIGN KEY", err.msg)
+    return match
+
+def WritePatronType(mycursor, Entry: DBEntry):
+
     return
 
-def WriteLibraryCode(mycursor):
+def WriteLibraryCode(mycursor, Entry: DBEntry):
+
     return
-def WritePatron(mycursor):
+def WriteNotificationCode(mycursor, Entry: DBEntry):
     return
+def WritePatron(mycursor, Entry: DBEntry):
+    sql = "INSERT INTO Patrons ( PatronTypeID, TotalCheckouts, TotalRenews, AgeRangeLow, AgeRangeHigh, HomeLibraryCode, CirculationActiveMonth, CirculationActiveYear, NotificationPreferenceCode, providedEmailAddress, WithinSanFranciscoCounty, PatronRegisterYear) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
+    values = (Entry.PatronTypeID, Entry.TotalCheckouts, Entry.TotalRenews, Entry.AgeRangeLow, Entry.AgeRangehigh, Entry.HomeLibraryCode, Entry.CirculationActiveMonth, Entry.CirculationActiveYear, Entry.NotificationPreferenceCode, Entry.providedEmailAddress, Entry.WithinSanFranciscoCounty, Entry.PatronRegisterYear)
+    try:
+        mycursor.execute(sql, values)
+        mydb.commit
+    except mysql.connector.Error as err:
+        print(f"Error: {err}")
+        ferror  = handle_foreign_key_error(err)
+        if ferror == 'patrons_ibfk_1':
+            WritePatronType(mycursor, Entry)
+            WritePatron(mycursor, Entry)
+        elif ferror == 'patrons_ibfk_2':
+            WriteLibraryCode(mycursor, Entry)
+            WritePatron(mycursor, Entry)
+        elif ferror == 'patrons_ibfk_3':
+            WriteNotificationCode(mycursor, Entry)
+            WritePatron(mycursor, Entry)
+        input()
+    return
+def Corected(value):
+    if value == ' ' or math.isnan(value):
+        return None
+    else:
+        return value
 
 try:
     mydb = mysql.connector.connect(
@@ -65,7 +99,7 @@ if int(userinput) == 1:
         NewRow = DBEntry()
         NewRow.PatronTypeID = row['Patron Type Code\npatron_type_code']
         NewRow.PatronTypeDefinition = row['Patron Type Definition\n']
-        NewRow.TotalCheckots = row['Total Checkouts\ncheckout_total']
+        NewRow.TotalCheckouts = row['Total Checkouts\ncheckout_total']
         NewRow.TotalRenews = row['Total Renewals\nrenewal_total']
 
         #get low and high age
@@ -85,14 +119,16 @@ if int(userinput) == 1:
             NewRow.AgeRangehigh = None
         NewRow.HomeLibraryCode = row['Home Library Code\nhome_library_code']
         NewRow.HomeLibraryDefinition = row['Home Library Definition\n']
-        NewRow.CirculationActiveMonth = row['Circulation Active Month\n']
-        NewRow.CirculationActiveYear = row['Circulation Active Year\n']
+        #some genius went through and put a space on every single row 
+        NewRow.CirculationActiveMonth = Corected(row['Circulation Active Month\n'])
+        NewRow.CirculationActiveYear = Corected(row['Circulation Active Year\n'])
         NewRow.NotificationPreferenceCode = row['Notification Preference Code\nnotification_medium_code']
         NewRow.NotificationCodeDefinition = row['Notification Code Definition']
         NewRow.providedEmailAddress = row['Provided Email Address\n']
         NewRow.WithinSanFranciscoCounty = row['Within San Francisco County']
         NewRow.PatronRegisterYear = row['Year Patron Registered']
         print(index)
+        WritePatron(mycursor, NewRow)
 
 
 mycursor.execute("SHOW TABLES")
