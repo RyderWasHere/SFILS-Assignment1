@@ -35,13 +35,32 @@ def handle_foreign_key_error(err):
     return match
 
 def WritePatronType(mycursor, Entry: DBEntry):
-
+    sql = "INSERT INTO PatronTypes( PatronTypeID, PatronTypeDefinition) VALUES (%s, %s)"
+    values = (Entry.PatronTypeID, Entry.PatronTypeDefinition)
+    try:
+        mycursor.execute(sql, values)
+        mydb.commit
+    except mysql.connector.Error as err:
+        print(f"Error: {err}")
     return
 
 def WriteLibraryCode(mycursor, Entry: DBEntry):
-
+    sql = "INSERT INTO HomeLibraryCodes( HomeLibraryCode, HomeLibraryDefinition) VALUES (%s, %s)"
+    values = (Entry.HomeLibraryCode, Entry.HomeLibraryDefinition)
+    try:
+        mycursor.execute(sql, values)
+        mydb.commit
+    except mysql.connector.Error as err:
+        print(f"Error: {err}")
     return
 def WriteNotificationCode(mycursor, Entry: DBEntry):
+    sql = "INSERT INTO NotificationCodes( NotificationPreferenceCode, NotificationCodeDefinition) VALUES (%s, %s)"
+    values = (Entry.NotificationPreferenceCode, Entry.NotificationCodeDefinition)
+    try:
+        mycursor.execute(sql, values)
+        mydb.commit
+    except mysql.connector.Error as err:
+        print(f"Error: {err}")
     return
 def WritePatron(mycursor, Entry: DBEntry):
     sql = "INSERT INTO Patrons ( PatronTypeID, TotalCheckouts, TotalRenews, AgeRangeLow, AgeRangeHigh, HomeLibraryCode, CirculationActiveMonth, CirculationActiveYear, NotificationPreferenceCode, providedEmailAddress, WithinSanFranciscoCounty, PatronRegisterYear) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)"
