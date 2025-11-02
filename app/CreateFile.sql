@@ -1,6 +1,7 @@
 CREATE DATABASE RfAssignment1;
 
 use RfAssignment1;
+
 CREATE TABLE PatronTypes(
 PatronTypeID int,
 PatronTypeDefinition varchar(225) NOT NULL,
@@ -8,7 +9,7 @@ PRIMARY KEY(PatronTypeID)
 );
 
 CREATE TABLE HomeLibararyCodes(
-HomeLibraryCode varchar(2) NOT NULL,
+HomeLibraryCode varchar(3) NOT NULL,
 HomeLibraryDefinition varchar(225),
 PRIMARY KEY(HomeLibraryCode)
 );

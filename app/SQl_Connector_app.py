@@ -32,7 +32,7 @@ def handle_foreign_key_error(err):
     # Regex to extract the constraint name from the error message
     # Pattern: CONSTRAINT `(constraint_name)` FOREIGN KEY
     match = re.search(r"CONSTRAINT `([^`]+)` FOREIGN KEY", err.msg)
-    return match
+    return match.group(1)
 
 def WritePatronType(mycursor, Entry: DBEntry):
     sql = "INSERT INTO PatronTypes( PatronTypeID, PatronTypeDefinition) VALUES (%s, %s)"
@@ -45,7 +45,7 @@ def WritePatronType(mycursor, Entry: DBEntry):
     return
 
 def WriteLibraryCode(mycursor, Entry: DBEntry):
-    sql = "INSERT INTO HomeLibraryCodes( HomeLibraryCode, HomeLibraryDefinition) VALUES (%s, %s)"
+    sql = "INSERT INTO HomeLibararyCodes( HomeLibraryCode, HomeLibraryDefinition) VALUES (%s, %s)"
     values = (Entry.HomeLibraryCode, Entry.HomeLibraryDefinition)
     try:
         mycursor.execute(sql, values)
@@ -80,10 +80,11 @@ def WritePatron(mycursor, Entry: DBEntry):
         elif ferror == 'patrons_ibfk_3':
             WriteNotificationCode(mycursor, Entry)
             WritePatron(mycursor, Entry)
-        input()
     return
 def Corected(value):
-    if value == ' ' or math.isnan(value):
+    if value in [' ', '-', '']:
+        return None
+    elif isinstance(value, (int, float)) and math.isnan(value):
         return None
     else:
         return value
@@ -131,7 +132,7 @@ if int(userinput) == 1:
                 NewRow.AgeRangeLow = low
                 NewRow.AgeRangehigh = high
             except:
-                NewRow.AgeRangeLow = separatedAge
+                NewRow.AgeRangeLow = int(separatedAge)
                 NewRow.AgeRangehigh = None
         except:
             NewRow.AgeRangeLow = None
@@ -141,7 +142,7 @@ if int(userinput) == 1:
         #some genius went through and put a space on every single row 
         NewRow.CirculationActiveMonth = Corected(row['Circulation Active Month\n'])
         NewRow.CirculationActiveYear = Corected(row['Circulation Active Year\n'])
-        NewRow.NotificationPreferenceCode = row['Notification Preference Code\nnotification_medium_code']
+        NewRow.NotificationPreferenceCode = Corected(row['Notification Preference Code\nnotification_medium_code'])
         NewRow.NotificationCodeDefinition = row['Notification Code Definition']
         NewRow.providedEmailAddress = row['Provided Email Address\n']
         NewRow.WithinSanFranciscoCounty = row['Within San Francisco County']
@@ -149,7 +150,7 @@ if int(userinput) == 1:
         print(index)
         WritePatron(mycursor, NewRow)
 
-
+print("database populated")
 mycursor.execute("SHOW TABLES")
 for db in mycursor:
     print(db)
