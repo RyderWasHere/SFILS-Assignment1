@@ -1,7 +1,8 @@
 # SFILS: San Francisco Integrated Library System.
 
 SFILS is an integrated library system for the San Francisco Public Library.
-
+## How to Run
+Check the Docs folder for information on how to settup and run
 
 ## Data
 This project uses the [library usage data set](https://data.sfgov.org/Culture-and-Recreation/Library-Usage/qzz6-2jup/about_data) to build a complete database of the San Francisco Public Library.
