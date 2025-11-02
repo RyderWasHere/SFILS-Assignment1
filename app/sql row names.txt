@@ -1,0 +1,15 @@
+'Patron Type Code\npatron_type_code'
+'Patron Type Definition\n'
+'Total Checkouts\ncheckout_total'
+'Total Renewals\nrenewal_total'
+'Age Range\n'
+'Home Library Code\nhome_library_code'
+'Home Library Definition\n'
+'Circulation Active Month\n'
+'Circulation Active Year\n'
+'Notification Preference Code\nnotification_medium_code'
+'Notification Code Definition' 
+'Provided Email Address\n'
+'Within San Francisco County'
+'Year Patron Registered'],
+
