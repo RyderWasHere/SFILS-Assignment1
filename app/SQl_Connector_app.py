@@ -101,7 +101,7 @@ except mysql.connector.Error as err:
     print(f"Error: {err}")
 
 
-print("1 - import Sample.xlsx file\n2 - query existing database")
+print("1 - import Sample.xlsx file\n2 - query existing database\n3 - Expert mode: Direct SQL queries")
 userinput = input()
 mycursor = mydb.cursor()
 if int(userinput) == 1:
@@ -152,11 +152,48 @@ if int(userinput) == 1:
         WritePatron(mycursor, NewRow)
 
     print("database populated")
-print("Try quering database")
-userinput = input()
-#horrible horrible horible
-mycursor.execute(userinput)
-for db in mycursor:
-    print(db)
+elif int(userinput) == 3:
+    print("Try quering database - type exit to quit")
+    conquery = True
+    while conquery == True:
+        userinput = input()
+        if userinput != exit:
+            #horrible horrible horible
+            mycursor.execute(userinput)
+            for db in mycursor:
+                print(db)
+        else:
+            conquery = False
+else:
+    conquery = True
+    while conquery:
+        print("Options:")
+        print("1 - Show tables")
+        print("2 - select a patron by ID")
+        print("3 - Show Patron Types")
+        print("4 - Show Home Libary Codes")
+        print("5 - Show Notification Codes")
+        print("exit - to exit\n")
+        userinput = input()
+        match userinput:
+            case "1":
+                mycursor.execute("SHOW TABLES")
+            case "2":
+                print("Enter Patron ID")
+                userinput = input()
+                mycursor.execute("SELECT * FROM Patrons WHERE PatronID = %s", (int(userinput),))
+            case "3":
+                mycursor.execute("SELECT * FROM PatronTypes")
+            case "4":
+                mycursor.execute("SELECT * FROM HomeLibararyCodes")
+            case "5":
+                mycursor.execute("SELECT * FROM NotificationCodes")
+            case "exit":
+                conquery = False
+
+        results = mycursor.fetchall() 
+        for row in results:
+            print(row)
+    
 mycursor.close()
 mydb.close()

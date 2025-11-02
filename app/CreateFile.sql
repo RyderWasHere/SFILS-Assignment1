@@ -1,10 +1,6 @@
 CREATE DATABASE RfAssignment1;
 
 use RfAssignment1;
-Alter table HomeLibararyCodes
-modify column HomeLibraryCode varchar(10);
-Alter table Patrons
-modify column HomeLibraryCode varchar(10);
 CREATE TABLE PatronTypes(
 PatronTypeID int,
 PatronTypeDefinition varchar(225) NOT NULL,
