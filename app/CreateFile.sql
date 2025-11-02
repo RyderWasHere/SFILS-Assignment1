@@ -1,7 +1,10 @@
 CREATE DATABASE RfAssignment1;
 
 use RfAssignment1;
-
+Alter table HomeLibararyCodes
+modify column HomeLibraryCode varchar(10);
+Alter table Patrons
+modify column HomeLibraryCode varchar(10);
 CREATE TABLE PatronTypes(
 PatronTypeID int,
 PatronTypeDefinition varchar(225) NOT NULL,
@@ -9,7 +12,7 @@ PRIMARY KEY(PatronTypeID)
 );
 
 CREATE TABLE HomeLibararyCodes(
-HomeLibraryCode varchar(3) NOT NULL,
+HomeLibraryCode varchar(10) NOT NULL,
 HomeLibraryDefinition varchar(225),
 PRIMARY KEY(HomeLibraryCode)
 );
@@ -25,7 +28,7 @@ TotalCheckouts int,
 TotalRenews int,
 AgeRangeLow int,
 AgeRangeHigh int,
-HomeLibraryCode varchar(3),
+HomeLibraryCode varchar(10),
 CirculationActiveMonth varchar(225),
 CirculationActiveYear int,
 NotificationPreferenceCode char,

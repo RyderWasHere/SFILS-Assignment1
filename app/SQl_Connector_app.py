@@ -39,7 +39,7 @@ def WritePatronType(mycursor, Entry: DBEntry):
     values = (Entry.PatronTypeID, Entry.PatronTypeDefinition)
     try:
         mycursor.execute(sql, values)
-        mydb.commit
+        mydb.commit()
     except mysql.connector.Error as err:
         print(f"Error: {err}")
     return
@@ -49,7 +49,7 @@ def WriteLibraryCode(mycursor, Entry: DBEntry):
     values = (Entry.HomeLibraryCode, Entry.HomeLibraryDefinition)
     try:
         mycursor.execute(sql, values)
-        mydb.commit
+        mydb.commit()
     except mysql.connector.Error as err:
         print(f"Error: {err}")
     return
@@ -58,7 +58,7 @@ def WriteNotificationCode(mycursor, Entry: DBEntry):
     values = (Entry.NotificationPreferenceCode, Entry.NotificationCodeDefinition)
     try:
         mycursor.execute(sql, values)
-        mydb.commit
+        mydb.commit()
     except mysql.connector.Error as err:
         print(f"Error: {err}")
     return
@@ -67,7 +67,7 @@ def WritePatron(mycursor, Entry: DBEntry):
     values = (Entry.PatronTypeID, Entry.TotalCheckouts, Entry.TotalRenews, Entry.AgeRangeLow, Entry.AgeRangehigh, Entry.HomeLibraryCode, Entry.CirculationActiveMonth, Entry.CirculationActiveYear, Entry.NotificationPreferenceCode, Entry.providedEmailAddress, Entry.WithinSanFranciscoCounty, Entry.PatronRegisterYear)
     try:
         mycursor.execute(sql, values)
-        mydb.commit
+        mydb.commit()
     except mysql.connector.Error as err:
         print(f"Error: {err}")
         ferror  = handle_foreign_key_error(err)
@@ -103,7 +103,7 @@ except mysql.connector.Error as err:
 
 print("1 - import Sample.xlsx file\n2 - query existing database")
 userinput = input()
-
+mycursor = mydb.cursor()
 if int(userinput) == 1:
     print("opening Sample.xlsn file...")
     #opening file to be read
@@ -111,7 +111,6 @@ if int(userinput) == 1:
         df = pd.read_excel('app/Sample.xlsx', sheet_name='Sheet1')
     except:
         print("failed to open file")
-    mycursor = mydb.cursor()
     #add these collumns
     print(df.columns)
     #go through all the lines in the DB
@@ -137,7 +136,7 @@ if int(userinput) == 1:
         except:
             NewRow.AgeRangeLow = None
             NewRow.AgeRangehigh = None
-        NewRow.HomeLibraryCode = row['Home Library Code\nhome_library_code']
+        NewRow.HomeLibraryCode = Corected(row['Home Library Code\nhome_library_code'])
         NewRow.HomeLibraryDefinition = row['Home Library Definition\n']
         #some genius went through and put a space on every single row 
         NewRow.CirculationActiveMonth = Corected(row['Circulation Active Month\n'])
@@ -148,9 +147,16 @@ if int(userinput) == 1:
         NewRow.WithinSanFranciscoCounty = row['Within San Francisco County']
         NewRow.PatronRegisterYear = row['Year Patron Registered']
         print(index)
+        # if index == 2709:
+        #     print(NewRow.HomeLibraryCode)
         WritePatron(mycursor, NewRow)
 
-print("database populated")
-mycursor.execute("SHOW TABLES")
+    print("database populated")
+print("Try quering database")
+userinput = input()
+#horrible horrible horible
+mycursor.execute(userinput)
 for db in mycursor:
     print(db)
+mycursor.close()
+mydb.close()
