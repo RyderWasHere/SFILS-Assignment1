@@ -29,8 +29,6 @@ class DBEntry:
         self.PatronRegisterYear = None
 
 def handle_foreign_key_error(err):
-    # Regex to extract the constraint name from the error message
-    # Pattern: CONSTRAINT `(constraint_name)` FOREIGN KEY
     match = re.search(r"CONSTRAINT `([^`]+)` FOREIGN KEY", err.msg)
     return match.group(1)
 
@@ -94,7 +92,7 @@ try:
         host="localhost",
         user="root",
         password="admin",
-        database="RFAssignment1" # Optional: specify a database to connect to
+        database="RFAssignment1"
     )
     print("Connected to RFAssignment1 database!")
 except mysql.connector.Error as err:
@@ -147,8 +145,6 @@ if int(userinput) == 1:
         NewRow.WithinSanFranciscoCounty = row['Within San Francisco County']
         NewRow.PatronRegisterYear = row['Year Patron Registered']
         print(index)
-        # if index == 2709:
-        #     print(NewRow.HomeLibraryCode)
         WritePatron(mycursor, NewRow)
 
     print("database populated")
