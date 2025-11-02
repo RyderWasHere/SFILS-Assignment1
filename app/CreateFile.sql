@@ -36,25 +36,5 @@ FOREIGN KEY(PatronTypeID) references PatronTypes(PatronTypeID),
 FOREIGN KEY(HomeLibraryCode) references HomeLibararyCodes(HomeLibraryCode),
 FOREIGN KEY(NotificationPreferenceCode) references NotificationCodes(NotificationPreferenceCode)
 );
-Show tables
-/*
-insert into PatronTypes (PatronTypeID, PatronTypeDefinition)
-values 
-	(0, 'Adult'),
-	(1, 'Juvenile'),
-	(2, 'Teen'),
-    (3, 'Senior'),
-    (4, 'Welcome'),
-    (16, 'Digital Access Card');
 
-insert into HomeLibararyCodes(HomeLibraryCode, HomeLibraryDefinition)
-values
-	('r3', 'RichMond'),
-    ('x', 'Main'),
-    ('m4', 'Merced'),
-    ('b2', 'Bayview'),
-    ('s7', 'Sunset'),
-    ('m8', 'Mission Bay'), 
-    ('p3', 'Parkside');
-    */
     
