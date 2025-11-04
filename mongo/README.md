@@ -12,6 +12,7 @@ However, I will provide a guide on what is new since last implementation
 - A new input required to select which database type you will be using
 - Case statements will swap to what logic you need to be using for each implementation
 - Timer added that starts when opening the document to finishing populating database
+- New Reflection doc(unsure if this was required)
 ## New functions
 ### M_WritePatron
 Since MongoDB is a lazy database, there is no foreign key support so instead of recursively adding to the foreign key table, I instead check ahead of time.
