@@ -34,8 +34,21 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "SQl_Connector_app.py",
+              "DocumentMoniker": "C:\\Users\\Ryder F\\Documents\\SFILS-Assignment1\\app\\SQl_Connector_app.py",
+              "RelativeDocumentMoniker": "app\\SQl_Connector_app.py",
+              "ToolTip": "C:\\Users\\Ryder F\\Documents\\SFILS-Assignment1\\app\\SQl_Connector_app.py",
+              "RelativeToolTip": "app\\SQl_Connector_app.py",
+              "ViewState": "AgIAANoAAAAAAAAAAAAAAO0AAABOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
+              "WhenOpened": "2025-10-31T18:43:26.254Z",
+              "EditorCaption": ""
+            },
             {
               "$type": "Document",
               "DocumentIndex": 3,
@@ -47,19 +60,6 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
               "WhenOpened": "2025-11-01T22:10:03.855Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "SQl_Connector_app.py",
-              "DocumentMoniker": "C:\\Users\\Ryder F\\Documents\\SFILS-Assignment1\\app\\SQl_Connector_app.py",
-              "RelativeDocumentMoniker": "app\\SQl_Connector_app.py",
-              "ToolTip": "C:\\Users\\Ryder F\\Documents\\SFILS-Assignment1\\app\\SQl_Connector_app.py",
-              "RelativeToolTip": "app\\SQl_Connector_app.py",
-              "ViewState": "AgIAAHUAAAAAAAAAAAAAAIcAAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
-              "WhenOpened": "2025-10-31T18:43:26.254Z",
               "EditorCaption": ""
             },
             {

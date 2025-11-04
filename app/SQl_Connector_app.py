@@ -3,6 +3,7 @@ from enum import Enum
 from importlib.abc import PathEntryFinder
 import math
 from math import isnan, nan
+import time
 import os
 from sqlite3 import Cursor
 from tkinter import CHAR
@@ -94,19 +95,19 @@ def M_WritePatronType(Entry: DBEntry):
     collection = Mdb["PatronTypes"]
     ToInsert = {"TypeID": Entry.PatronTypeID, "Type" : Entry.PatronTypeDefinition}
     x = collection.insert_one(ToInsert)
-    print(x.inserted_id)
+    print(x.inserted_id,ToInsert)
     return
 def M_WriteLibraryCode(Entry: DBEntry):
     collection  = Mdb["HomeLibraryCodes"]
     ToInsert = {"LibraryID" : Entry.HomeLibraryCode, "LibraryDef": Entry.HomeLibraryDefinition}
     x = collection.insert_one(ToInsert)
-    print(x.inserted_id)
+    print(x.inserted_id,ToInsert)
     return
 def M_WriteNotificationCode(Entry: DBEntry):
     collection = Mdb["NotificationCodes"]
     ToInsert = {"NotificationCode": Entry.NotificationPreferenceCode, "NotificationType": Entry.NotificationCodeDefinition}
     x = collection.insert_one(ToInsert)
-    print(x.inserted_id)
+    print(x.inserted_id, ToInsert)
     return
 def M_WritePatron(Entry: DBEntry):
     #perform checks to see if data exists in other tables
@@ -126,25 +127,21 @@ def M_WritePatron(Entry: DBEntry):
         "PatronRegisterYear" : Entry.PatronRegisterYear
         }
     x = collection.insert_one(ToInsert)
-    print(x.inserted_id)
     return
 def M_checkCollections(Entry: DBEntry):
     #PatronTypes Check
-    colletion = Mdb["PatronTypes"]
+    collection = Mdb["PatronTypes"]
     x = collection.find_one({"TypeID": Entry.PatronTypeID})
-    print(x)
     if x is None:
         M_WritePatronType(Entry)
     #libararyCodes Check
     collection = Mdb["HomeLibraryCodes"]
-    x = collection.find_one({"TypeID": Entry.HomeLibraryCode})
-    print(x)
+    x = collection.find_one({"LibraryID": Entry.HomeLibraryCode})
     if x is None:
         M_WriteLibraryCode(Entry)
     #NotificationCodeCheck
     collection = Mdb["NotificationCodes"]
-    x = collection.find_one({"TypeID": Entry.NotificationPreferenceCode})
-    print(x)
+    x = collection.find_one({"NotificationCode": Entry.NotificationPreferenceCode})
     if x is None:
         M_WriteNotificationCode(Entry)
     return
@@ -179,6 +176,7 @@ match userinput:
         DatabaseType = DDType.MongoDb
         try:
             client = MongoClient("mongodb://localhost:27017/")
+            print(client.list_database_names)
             Mdb = client["LibraryDB"]
             collection = Mdb["Patrons"]
             print("Connected to RFAssignment1 Database!")
@@ -188,7 +186,7 @@ match userinput:
 
 print("1 - import Sample.xlsx file\n2 - query existing database\n3 - Expert mode: Direct SQL queries")
 userinput = input()
-
+mytime = time.time()
 if int(userinput) == 1:
     print("opening Sample.xlsn file...")
     #opening file to be read
@@ -237,7 +235,7 @@ if int(userinput) == 1:
                 WritePatron(mycursor, NewRow)
             case DDType.MongoDb:
                 M_WritePatron(NewRow)
-    print("database populated")
+    print("Database populated in {:.2f} seconds".format(time.time() - mytime))
 elif int(userinput) == 3:
     print("Try quering database - type exit to quit")
     conquery = True
