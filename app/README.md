@@ -5,3 +5,4 @@ This folder contains the source code of the (minimal) application that allows us
 - Pandas
 - mysql Connector
 - openpyxl
+- pymongo

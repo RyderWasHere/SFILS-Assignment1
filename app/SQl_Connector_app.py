@@ -1,4 +1,5 @@
 from asyncio.windows_events import NULL
+from enum import Enum
 from importlib.abc import PathEntryFinder
 import math
 from math import isnan, nan
@@ -9,6 +10,15 @@ from xml.dom import UserDataHandler
 import mysql.connector
 import pandas as pd
 import re
+import pymongo
+from pymongo import MongoClient
+from enum import Enum
+
+#define enums to allow connection to both databases
+class DDType(Enum):
+    Mysql = 1
+    MongoDb = 2
+DatabaseType = None
 
 class DBEntry:
     def __init__(self):
@@ -28,10 +38,10 @@ class DBEntry:
         self.WithinSanFranciscoCounty = None
         self.PatronRegisterYear = None
 
+#mysql files
 def handle_foreign_key_error(err):
     match = re.search(r"CONSTRAINT `([^`]+)` FOREIGN KEY", err.msg)
     return match.group(1)
-
 def WritePatronType(mycursor, Entry: DBEntry):
     sql = "INSERT INTO PatronTypes( PatronTypeID, PatronTypeDefinition) VALUES (%s, %s)"
     values = (Entry.PatronTypeID, Entry.PatronTypeDefinition)
@@ -41,7 +51,6 @@ def WritePatronType(mycursor, Entry: DBEntry):
     except mysql.connector.Error as err:
         print(f"Error: {err}")
     return
-
 def WriteLibraryCode(mycursor, Entry: DBEntry):
     sql = "INSERT INTO HomeLibararyCodes( HomeLibraryCode, HomeLibraryDefinition) VALUES (%s, %s)"
     values = (Entry.HomeLibraryCode, Entry.HomeLibraryDefinition)
@@ -79,6 +88,17 @@ def WritePatron(mycursor, Entry: DBEntry):
             WriteNotificationCode(mycursor, Entry)
             WritePatron(mycursor, Entry)
     return
+
+#mongoDB files
+def M_WritePatronType(Entry: DBEntry):
+    return
+def M_WriteLibraryCode(Entry: DBEntry):
+    return
+def M_WriteNotificationCode(Entry: DBEntry):
+    return
+def M_WritePatron(Entry: DBEntry):
+    return
+
 def Corected(value):
     if value in [' ', '-', '']:
         return None
@@ -87,16 +107,30 @@ def Corected(value):
     else:
         return value
 
-try:
-    mydb = mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="admin",
-        database="RFAssignment1"
-    )
-    print("Connected to RFAssignment1 database!")
-except mysql.connector.Error as err:
-    print(f"Error: {err}")
+
+#main
+print("Please Select database to connect to:")
+print("1 - Mysql\n2 - MongoDb")
+userinput = input()
+match userinput:
+    case "1":
+        DatabaseType = DDType.Mysql
+        try:
+            mydb = mysql.connector.connect(
+                host="localhost",
+                user="root",
+                password="admin",
+                database="RFAssignment1"
+            )
+            print("Connected to RFAssignment1 database!")
+        except mysql.connector.Error as err:
+            print(f"Error: {err}")
+    case "2":
+        DatabaseType = DDType.MongoDb
+        try:
+            client = MongoClient("mongodb://localhost:27017/")
+        except:
+            print("Something went wrong! Could not connect")
 
 
 print("1 - import Sample.xlsx file\n2 - query existing database\n3 - Expert mode: Direct SQL queries")
@@ -145,8 +179,11 @@ if int(userinput) == 1:
         NewRow.WithinSanFranciscoCounty = row['Within San Francisco County']
         NewRow.PatronRegisterYear = row['Year Patron Registered']
         print(index)
-        WritePatron(mycursor, NewRow)
-
+        match DatabaseType:
+            case DDType.Mysql:
+                WritePatron(mycursor, NewRow)
+            case DDType.MongoDb:
+                M_WritePatron(NewRow)
     print("database populated")
 elif int(userinput) == 3:
     print("Try quering database - type exit to quit")
