@@ -91,14 +91,63 @@ def WritePatron(mycursor, Entry: DBEntry):
 
 #mongoDB files
 def M_WritePatronType(Entry: DBEntry):
+    collection = Mdb["PatronTypes"]
+    ToInsert = {"TypeID": Entry.PatronTypeID, "Type" : Entry.PatronTypeDefinition}
+    x = collection.insert_one(ToInsert)
+    print(x.inserted_id)
     return
 def M_WriteLibraryCode(Entry: DBEntry):
+    collection  = Mdb["HomeLibraryCodes"]
+    ToInsert = {"LibraryID" : Entry.HomeLibraryCode, "LibraryDef": Entry.HomeLibraryDefinition}
+    x = collection.insert_one(ToInsert)
+    print(x.inserted_id)
     return
 def M_WriteNotificationCode(Entry: DBEntry):
+    collection = Mdb["NotificationCodes"]
+    ToInsert = {"NotificationCode": Entry.NotificationPreferenceCode, "NotificationType": Entry.NotificationCodeDefinition}
+    x = collection.insert_one(ToInsert)
+    print(x.inserted_id)
     return
 def M_WritePatron(Entry: DBEntry):
+    #perform checks to see if data exists in other tables
+    M_checkCollections(Entry)
+    collection = Mdb["Patrons"]
+    ToInsert = {
+        "TotalCheckouts" : Entry.TotalCheckouts,
+        "TotalRenews" : Entry.TotalRenews,
+        "AgeRangeLow" : Entry.AgeRangeLow,
+        "AgeRangeHigh" : Entry.AgeRangehigh,
+        "HomeLibraryCode" : Entry.HomeLibraryCode,
+        "CirculationActiveMonth" : Entry.CirculationActiveMonth,
+        "CirculationActiveYear" : Entry.CirculationActiveYear,
+        "NotificationPreferenceCode" : Entry.NotificationPreferenceCode,
+        "ProvidedEmailAddress" : Entry.providedEmailAddress,
+        "WithinSanFranciscoCounty" : Entry.WithinSanFranciscoCounty,
+        "PatronRegisterYear" : Entry.PatronRegisterYear
+        }
+    x = collection.insert_one(ToInsert)
+    print(x.inserted_id)
     return
-
+def M_checkCollections(Entry: DBEntry):
+    #PatronTypes Check
+    colletion = Mdb["PatronTypes"]
+    x = collection.find_one({"TypeID": Entry.PatronTypeID})
+    print(x)
+    if x is None:
+        M_WritePatronType(Entry)
+    #libararyCodes Check
+    collection = Mdb["HomeLibraryCodes"]
+    x = collection.find_one({"TypeID": Entry.HomeLibraryCode})
+    print(x)
+    if x is None:
+        M_WriteLibraryCode(Entry)
+    #NotificationCodeCheck
+    collection = Mdb["NotificationCodes"]
+    x = collection.find_one({"TypeID": Entry.NotificationPreferenceCode})
+    print(x)
+    if x is None:
+        M_WriteNotificationCode(Entry)
+    return
 def Corected(value):
     if value in [' ', '-', '']:
         return None
@@ -123,19 +172,23 @@ match userinput:
                 database="RFAssignment1"
             )
             print("Connected to RFAssignment1 database!")
+            mycursor = mydb.cursor()
         except mysql.connector.Error as err:
             print(f"Error: {err}")
     case "2":
         DatabaseType = DDType.MongoDb
         try:
             client = MongoClient("mongodb://localhost:27017/")
+            Mdb = client["LibraryDB"]
+            collection = Mdb["Patrons"]
+            print("Connected to RFAssignment1 Database!")
         except:
             print("Something went wrong! Could not connect")
 
 
 print("1 - import Sample.xlsx file\n2 - query existing database\n3 - Expert mode: Direct SQL queries")
 userinput = input()
-mycursor = mydb.cursor()
+
 if int(userinput) == 1:
     print("opening Sample.xlsn file...")
     #opening file to be read

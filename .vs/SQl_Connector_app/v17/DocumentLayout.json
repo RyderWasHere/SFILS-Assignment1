@@ -46,7 +46,8 @@
               "RelativeToolTip": ".gitignore",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-11-01T22:10:03.855Z"
+              "WhenOpened": "2025-11-01T22:10:03.855Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -56,7 +57,7 @@
               "RelativeDocumentMoniker": "app\\SQl_Connector_app.py",
               "ToolTip": "C:\\Users\\Ryder F\\Documents\\SFILS-Assignment1\\app\\SQl_Connector_app.py",
               "RelativeToolTip": "app\\SQl_Connector_app.py",
-              "ViewState": "AgIAAJAAAAAAAAAAAAAAAJwAAAAmAAAAAAAAAA==",
+              "ViewState": "AgIAAHUAAAAAAAAAAAAAAIcAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
               "WhenOpened": "2025-10-31T18:43:26.254Z",
               "EditorCaption": ""
