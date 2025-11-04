@@ -39,7 +39,7 @@ class DBEntry:
         self.WithinSanFranciscoCounty = None
         self.PatronRegisterYear = None
 
-#mysql files
+#mysql functions
 def handle_foreign_key_error(err):
     match = re.search(r"CONSTRAINT `([^`]+)` FOREIGN KEY", err.msg)
     return match.group(1)
@@ -90,7 +90,7 @@ def WritePatron(mycursor, Entry: DBEntry):
             WritePatron(mycursor, Entry)
     return
 
-#mongoDB files
+#mongoDB functions
 def M_WritePatronType(Entry: DBEntry):
     collection = Mdb["PatronTypes"]
     ToInsert = {"TypeID": Entry.PatronTypeID, "Type" : Entry.PatronTypeDefinition}
@@ -114,6 +114,7 @@ def M_WritePatron(Entry: DBEntry):
     M_checkCollections(Entry)
     collection = Mdb["Patrons"]
     ToInsert = {
+        "PatronTypeID" : Entry.PatronTypeID,
         "TotalCheckouts" : Entry.TotalCheckouts,
         "TotalRenews" : Entry.TotalRenews,
         "AgeRangeLow" : Entry.AgeRangeLow,
@@ -145,6 +146,8 @@ def M_checkCollections(Entry: DBEntry):
     if x is None:
         M_WriteNotificationCode(Entry)
     return
+
+#unversaly used functinos
 def Corected(value):
     if value in [' ', '-', '']:
         return None
@@ -184,7 +187,7 @@ match userinput:
             print("Something went wrong! Could not connect")
 
 
-print("1 - import Sample.xlsx file\n2 - query existing database\n3 - Expert mode: Direct SQL queries")
+print("1 - import Sample.xlsx file\n2 - query existing database\n3 - Expert mode: Direct SQL queries(not avalible in mongoDB")
 userinput = input()
 mytime = time.time()
 if int(userinput) == 1:
@@ -236,7 +239,7 @@ if int(userinput) == 1:
             case DDType.MongoDb:
                 M_WritePatron(NewRow)
     print("Database populated in {:.2f} seconds".format(time.time() - mytime))
-elif int(userinput) == 3:
+elif int(userinput) == 3 and DatabaseType == DDType.mysql:
     print("Try quering database - type exit to quit")
     conquery = True
     while conquery == True:
@@ -251,33 +254,70 @@ elif int(userinput) == 3:
 else:
     conquery = True
     while conquery:
-        print("Options:")
-        print("1 - Show tables")
-        print("2 - select a patron by ID")
-        print("3 - Show Patron Types")
-        print("4 - Show Home Libary Codes")
-        print("5 - Show Notification Codes")
-        print("exit - to exit\n")
-        userinput = input()
-        match userinput:
-            case "1":
-                mycursor.execute("SHOW TABLES")
-            case "2":
-                print("Enter Patron ID")
+        match DatabaseType:
+            case DDType.Mysql:
+                print("Options:")
+                print("1 - Show tables")
+                print("2 - select a patron by ID")
+                print("3 - Show Patron Types")
+                print("4 - Show Home Libary Codes")
+                print("5 - Show Notification Codes")
+                print("exit - to exit\n")
                 userinput = input()
-                mycursor.execute("SELECT * FROM Patrons WHERE PatronID = %s", (int(userinput),))
-            case "3":
-                mycursor.execute("SELECT * FROM PatronTypes")
-            case "4":
-                mycursor.execute("SELECT * FROM HomeLibararyCodes")
-            case "5":
-                mycursor.execute("SELECT * FROM NotificationCodes")
-            case "exit":
-                conquery = False
+                match userinput:
+                    case "1":
+                        mycursor.execute("SHOW TABLES")
+                    case "2":
+                        print("Enter Patron ID")
+                        userinput = input()
+                        mycursor.execute("SELECT * FROM Patrons WHERE PatronID = %s", (int(userinput),))
+                    case "3":
+                        mycursor.execute("SELECT * FROM PatronTypes")
+                    case "4":
+                        mycursor.execute("SELECT * FROM HomeLibararyCodes")
+                    case "5":
+                        mycursor.execute("SELECT * FROM NotificationCodes")
+                    case "exit":
+                        conquery = False
 
-        results = mycursor.fetchall() 
-        for row in results:
-            print(row)
-    
-mycursor.close()
-mydb.close()
+                results = mycursor.fetchall() 
+                for row in results:
+                    print(row)
+            case DDType.MongoDb:
+                print("Options:")
+                print("1 - Show tables")
+                print("2 - select patrons of type")
+                print("3 - Show Patron Types")
+                print("4 - Show Home Libary Codes")
+                print("5 - Show Notification Codes")
+                print("exit - to exit\n")
+                userinput = input()
+                match userinput:
+                    case "1":
+                        print(Mdb.list_collection_names())
+                    case "2":
+                        print("Enter Patron Type ID")
+                        userinput = input()
+                        collection = Mdb["Patrons"]
+                        cursor = collection.find({"PatronTypeID" : int(userinput)}).limit(100)
+                        print("-showing top 100 results-")
+                        for doc in cursor:
+                            print(doc)
+                    case "3":
+                        collection = Mdb["PatronTypes"]
+                        for doc in collection.find():
+                           print(doc)
+                    case "4":
+                        collection = Mdb["HomeLibraryCodes"]
+                        for doc in collection.find():
+                            print(doc)
+                    case "5":
+                        collection = Mdb["NotificationCodes"]
+                        for doc in collection.find():
+                            print(doc)
+                    case "exit":
+                        conquery = False
+match DatabaseType:
+    case DDType.Mysql:
+        mycursor.close()
+        mydb.close()

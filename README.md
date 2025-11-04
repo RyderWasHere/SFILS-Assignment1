@@ -1,3 +1,6 @@
+# ASSIGNMENT 2 UPDATE INFORMATION
+MongoDB implementation is still located in app/SQL_Connector_app.py Sorry :(
+The information on what is new is in the Mongo folder. Instructions for how to run are in the docs folder
 # SFILS: San Francisco Integrated Library System.
 
 SFILS is an integrated library system for the San Francisco Public Library.

@@ -7,24 +7,24 @@
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:app\\SQl_Connector_app.py||{8B382828-6202-11D1-8870-0000F87579D2}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Ryder F\\Documents\\SFILS-Assignment1\\docs\\README.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:docs\\README.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Ryder F\\Documents\\SFILS-Assignment1\\README.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:README.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Ryder F\\Documents\\SFILS-Assignment1\\LICENSE||{8B382828-6202-11D1-8870-0000F87579D2}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:LICENSE||{8B382828-6202-11D1-8870-0000F87579D2}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Ryder F\\Documents\\SFILS-Assignment1\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Ryder F\\Documents\\SFILS-Assignment1\\app\\README.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
       "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:app\\README.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Ryder F\\Documents\\SFILS-Assignment1\\docs\\README.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:docs\\README.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Ryder F\\Documents\\SFILS-Assignment1\\mongo\\README.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:mongo\\README.md||{EFC0BB08-EA7D-40C6-A696-C870411A895B}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\Ryder F\\Documents\\SFILS-Assignment1\\app\\sql row names.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:app\\sql row names.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
     }
   ],
   "DocumentGroupContainers": [
@@ -44,71 +44,81 @@
               "RelativeDocumentMoniker": "app\\SQl_Connector_app.py",
               "ToolTip": "C:\\Users\\Ryder F\\Documents\\SFILS-Assignment1\\app\\SQl_Connector_app.py",
               "RelativeToolTip": "app\\SQl_Connector_app.py",
-              "ViewState": "AgIAANoAAAAAAAAAAAAAAO0AAABOAAAAAAAAAA==",
+              "ViewState": "AgIAACcBAAAAAAAAAAAAADkBAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.002457|",
               "WhenOpened": "2025-10-31T18:43:26.254Z",
               "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": ".gitignore",
-              "DocumentMoniker": "C:\\Users\\Ryder F\\Documents\\SFILS-Assignment1\\.gitignore",
-              "RelativeDocumentMoniker": ".gitignore",
-              "ToolTip": "C:\\Users\\Ryder F\\Documents\\SFILS-Assignment1\\.gitignore",
-              "RelativeToolTip": ".gitignore",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-11-01T22:10:03.855Z",
-              "EditorCaption": ""
-            },
+            }
+          ]
+        },
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 2,
-              "Title": "LICENSE",
-              "DocumentMoniker": "C:\\Users\\Ryder F\\Documents\\SFILS-Assignment1\\LICENSE",
-              "RelativeDocumentMoniker": "LICENSE",
-              "ToolTip": "C:\\Users\\Ryder F\\Documents\\SFILS-Assignment1\\LICENSE",
-              "RelativeToolTip": "LICENSE",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-11-01T22:10:04.187Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
               "Title": "README.md",
               "DocumentMoniker": "C:\\Users\\Ryder F\\Documents\\SFILS-Assignment1\\README.md",
               "RelativeDocumentMoniker": "README.md",
               "ToolTip": "C:\\Users\\Ryder F\\Documents\\SFILS-Assignment1\\README.md",
               "RelativeToolTip": "README.md",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAsAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
-              "WhenOpened": "2025-11-01T22:10:04.25Z"
+              "WhenOpened": "2025-11-04T19:41:23.618Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "sql row names.txt",
+              "DocumentMoniker": "C:\\Users\\Ryder F\\Documents\\SFILS-Assignment1\\app\\sql row names.txt",
+              "RelativeDocumentMoniker": "app\\sql row names.txt",
+              "ToolTip": "C:\\Users\\Ryder F\\Documents\\SFILS-Assignment1\\app\\sql row names.txt",
+              "RelativeToolTip": "app\\sql row names.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2025-11-04T19:38:45.007Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 4,
               "Title": "README.md",
-              "DocumentMoniker": "C:\\Users\\Ryder F\\Documents\\SFILS-Assignment1\\app\\README.md",
-              "RelativeDocumentMoniker": "app\\README.md",
-              "ToolTip": "C:\\Users\\Ryder F\\Documents\\SFILS-Assignment1\\app\\README.md",
-              "RelativeToolTip": "app\\README.md",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAIAAAAAAAAAA==",
+              "DocumentMoniker": "C:\\Users\\Ryder F\\Documents\\SFILS-Assignment1\\mongo\\README.md",
+              "RelativeDocumentMoniker": "mongo\\README.md",
+              "ToolTip": "C:\\Users\\Ryder F\\Documents\\SFILS-Assignment1\\mongo\\README.md",
+              "RelativeToolTip": "mongo\\README.md",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
-              "WhenOpened": "2025-10-31T21:11:28.788Z"
+              "WhenOpened": "2025-11-04T19:20:36.676Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "README.md",
               "DocumentMoniker": "C:\\Users\\Ryder F\\Documents\\SFILS-Assignment1\\docs\\README.md",
               "RelativeDocumentMoniker": "docs\\README.md",
               "ToolTip": "C:\\Users\\Ryder F\\Documents\\SFILS-Assignment1\\docs\\README.md",
               "RelativeToolTip": "docs\\README.md",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAuwB4AAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
-              "WhenOpened": "2025-10-31T18:44:00.52Z"
+              "WhenOpened": "2025-10-31T18:44:00.52Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "README.md",
+              "DocumentMoniker": "C:\\Users\\Ryder F\\Documents\\SFILS-Assignment1\\app\\README.md",
+              "RelativeDocumentMoniker": "app\\README.md",
+              "ToolTip": "C:\\Users\\Ryder F\\Documents\\SFILS-Assignment1\\app\\README.md",
+              "RelativeToolTip": "app\\README.md",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001818|",
+              "WhenOpened": "2025-10-31T21:11:28.788Z",
+              "EditorCaption": ""
             }
           ]
         }
