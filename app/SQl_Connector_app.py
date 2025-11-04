@@ -239,7 +239,7 @@ if int(userinput) == 1:
             case DDType.MongoDb:
                 M_WritePatron(NewRow)
     print("Database populated in {:.2f} seconds".format(time.time() - mytime))
-elif int(userinput) == 3 and DatabaseType == DDType.mysql:
+elif int(userinput) == 3 and DatabaseType == DDType.Mysql:
     print("Try quering database - type exit to quit")
     conquery = True
     while conquery == True:
